@@ -73,9 +73,6 @@ func parseFromArgument(args []string) (string, error) {
 	if !regexp.MustCompile("^[0-9]+$").MatchString(logID) {
 		return "", errors.New("invalid log ID. It should only contain numbers")
 	}
-	if len(logID) < 64 {
-		return "", errors.New("invalid log ID. It should be at least 64 characters long")
-	}
 
 	return logID, nil
 }
