@@ -41,7 +41,7 @@ func main() {
 	for {
 		logs, nextURL, err := fetchLogs(token, url, from, 100)
 		if err != nil {
-			fmt.Println("Error fetching logs:", err)
+			fmt.Printf("Error fetching logs [from=%s, url=%s]: %s\n", from, url, err)
 			os.Exit(1)
 		}
 

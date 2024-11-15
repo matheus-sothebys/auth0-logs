@@ -48,9 +48,13 @@ func main() {
 }
 
 func fetchFirstLogID(token string, dateTime time.Time) (string, error) {
-	dateTimeStr := dateTime.Format("2006-01-02T15:04:05")
 
-	fmt.Printf("Fetching first log ID from %s\n", dateTimeStr)
+	endTime := dateTime.Add(12 * time.Hour)
+
+	startStr := dateTime.Format("2006-01-02T15:04:05")
+	endStr := endTime.Format("2006-01-02T15:04:05")
+
+	fmt.Printf("Fetching first log ID from %s\n", startStr)
 	req, err := http.NewRequest("GET", LogsEndpoint, nil)
 	if err != nil {
 		return "", err
@@ -59,7 +63,7 @@ func fetchFirstLogID(token string, dateTime time.Time) (string, error) {
 	req.Header.Set("Accept", "application/json")
 
 	q := req.URL.Query()
-	q.Add("q", fmt.Sprintf("date:[%s TO *]", dateTime.Format("2006-01-02T15:04:05")))
+	q.Add("q", fmt.Sprintf("date:[%s TO %s]", startStr, endStr))
 	q.Add("per_page", "1")
 
 	req.URL.RawQuery = q.Encode()
