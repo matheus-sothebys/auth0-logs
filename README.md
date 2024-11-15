@@ -1,6 +1,6 @@
 # Auth0 Logs Processor
 
-This repository contains Go scripts to interact with Auth0 logs and store them in a PostgreSQL database. The main components are:
+This repository contains Go scripts to interact with [Auth0 logs](https://auth0.com/docs/deploy-monitor/logs/retrieve-log-events-using-mgmt-api#retrieve-logs-by-checkpoint) and store them in a PostgreSQL database. The main components are:
 
 - **first-log-id/main.go**: Fetches the first log from a provided date.
 - **logs-by-checkpoint/main.go**: Fetches logs starting from a specific log ID and inserts them into PostgreSQL.
